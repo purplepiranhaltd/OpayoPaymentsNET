@@ -5,8 +5,8 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
 {
     public static class PaymentDeferredAuthenticateAuthoriseTransactionBuilderExtensions
     {
-        public static T ApplyAvsCvcCheck<T>(this T builder, ApplyCheck applyAvsCvcCheck)
-            where T : IPaymentDeferredAuthenticateAuthoriseTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalApplyAvsCvcCheckOverride<T>(this IBuildableTransactionBuilder<T> builder, ApplyCheck applyAvsCvcCheck)
+            where T : IPaymentDeferredAuthenticateAuthoriseTransaction
         {
             builder.Transaction.ApplyAvsCvcCheck = applyAvsCvcCheck;
             return builder;

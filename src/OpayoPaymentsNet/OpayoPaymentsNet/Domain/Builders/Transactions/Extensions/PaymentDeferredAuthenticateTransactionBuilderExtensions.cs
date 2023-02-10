@@ -7,99 +7,71 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
 {
     public static class PaymentDeferredAuthenticateTransactionBuilderExtensions
     {
-        public static T WithPaymentMethod<T>(this T builder, OpayoPaymentMethod paymentMethod)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
-        {
-            builder.Transaction.PaymentMethod = paymentMethod;
-            return builder;
-        }
-
-        public static T WithCustomerFirstName<T>(this T builder, string customerFirstName)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
-        {
-            builder.Transaction.CustomerFirstName = customerFirstName;
-            return builder;
-        }
-
-        public static T WithCustomerLastName<T>(this T builder, string customerLastName)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
-        {
-            builder.Transaction.CustomerLastName = customerLastName;
-            return builder;
-        }
-
-        public static T WithBillingAddress<T>(this T builder, OpayoBillingAddress billingAddress)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
-        {
-            builder.Transaction.BillingAddress = billingAddress;
-            return builder;
-        }
-
-        public static T WithSettlementReferenceText<T>(this T builder, string settlementReferenceText)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalSettlementReferenceText<T>(this IBuildableTransactionBuilder<T> builder, string settlementReferenceText)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.SettlementReferenceText = settlementReferenceText;
             return builder;
         }
 
-        public static T WithCustomerEmail<T>(this T builder, string customerEmail)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalCustomerEmail<T>(this IBuildableTransactionBuilder<T> builder, string customerEmail)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.CustomerEmail = customerEmail;
             return builder;
         }
 
-        public static T WithCustomerPhone<T>(this T builder, string customerPhone)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalCustomerPhone<T>(this IBuildableTransactionBuilder<T> builder, string customerPhone)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.CustomerPhone = customerPhone;
             return builder;
         }
 
-        public static T WithCustomerMobilePhone<T>(this T builder, string customerMobilePhone)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalCustomerMobilePhone<T>(this IBuildableTransactionBuilder<T> builder, string customerMobilePhone)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.CustomerMobilePhone = customerMobilePhone;
             return builder;
         }
 
-        public static T WithCustomerWorkPhone<T>(this T builder, string customerWorkPhone)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalCustomerWorkPhone<T>(this IBuildableTransactionBuilder<T> builder, string customerWorkPhone)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.CustomerWorkPhone = customerWorkPhone;
             return builder;
         }
 
-        public static T WithEntryMethod<T>(this T builder, EntryMethod entryMethod)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalEntryMethod<T>(this IBuildableTransactionBuilder<T> builder, EntryMethod entryMethod)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.EntryMethod = entryMethod;
             return builder;
         }
 
-        public static T Apply3DSecure<T>(this T builder, ApplyCheck apply3DSecure)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalApply3DSecureOverride<T>(this IBuildableTransactionBuilder<T> builder, ApplyCheck apply3DSecure)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.Apply3DSecure = apply3DSecure;
             return builder;
         }
 
-        public static T WithReferrerId<T>(this T builder, string referrerId)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalReferrerId<T>(this IBuildableTransactionBuilder<T> builder, string referrerId)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.ReferrerId = referrerId;
             return builder;
         }
 
-        public static T WithStrongCustomerAuthentication<T>(this T builder, OpayoStrongCustomerAuthentication strongCustomerAuthentication)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalStrongCustomerAuthentication<T>(this IBuildableTransactionBuilder<T> builder, OpayoStrongCustomerAuthentication strongCustomerAuthentication)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.StrongCustomerAuthentication = strongCustomerAuthentication;
             return builder;
         }
 
-        public static T WithFinancialInstitutionRecipient<T>(this T builder, OpayoFinancialInstitutionRecipient fiRecipient)
-            where T : IPaymentDeferredAuthenticateTransactionBuilder
+        public static IBuildableTransactionBuilder<T> WithOptionalFinancialInstitutionRecipient<T>(this IBuildableTransactionBuilder<T> builder, OpayoFinancialInstitutionRecipient fiRecipient)
+            where T : IPaymentDeferredAuthenticateTransaction
         {
             builder.Transaction.FiRecipient = fiRecipient;
             return builder;

@@ -30,16 +30,17 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
             var builder = OpayoCreateTransactionRequestBuilder.Create();
+
             var request = builder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsPaymentTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (request.IsFailure)
@@ -68,15 +69,15 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var builder = OpayoCreateTransactionRequestBuilder.Create();
             var request = builder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsDeferredTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (request.IsFailure)
@@ -105,15 +106,15 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var builder = OpayoCreateTransactionRequestBuilder.Create();
             var request = builder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsAuthenticateTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (request.IsFailure)
@@ -142,15 +143,15 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsPaymentTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (paymentRequest.IsFailure)
@@ -167,12 +168,12 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var repeatRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var repeatRequest = repeatRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsRepeatTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithReferenceTransactionId(paymentResponse.Response.TransactionId)
-                .WithCurrency("GBP")
+                .WithRequiredReferenceTransactionId(paymentResponse.Response.TransactionId)
+                .WithRequiredCurrency("GBP")
                 .Build();
 
             if (repeatRequest.IsFailure)
@@ -200,15 +201,15 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var authenticateRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var authenticateRequest = authenticateRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsAuthenticateTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (authenticateRequest.IsFailure)
@@ -225,11 +226,11 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var authoriseRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var authoriseRequest = authoriseRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsAuthoriseTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithReferenceTransactionId(authenticateResponse.Response.TransactionId)
+                .WithRequiredReferenceTransactionId(authenticateResponse.Response.TransactionId)
                 .Build();
 
             if (authoriseRequest.IsFailure)
@@ -257,15 +258,15 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsPaymentTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithCurrency("GBP")
-                .WithBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
-                .WithCustomerFirstName("Tommy")
-                .WithCustomerLastName("Tester")
-                .WithPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
                 .Build();
 
             if (paymentRequest.IsFailure)
@@ -282,11 +283,11 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
             var refundRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
             var refundRequest = refundRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
                 .AsRefundTransaction()
-                .WithVendorTxCode(Guid.NewGuid().ToString())
-                .WithDescription("Integration Test Transaction")
-                .WithAmount(100)
-                .WithReferenceTransactionId(paymentResponse.Response.TransactionId)
+                .WithRequiredReferenceTransactionId(paymentResponse.Response.TransactionId)
                 .Build();
 
             if (refundRequest.IsFailure)

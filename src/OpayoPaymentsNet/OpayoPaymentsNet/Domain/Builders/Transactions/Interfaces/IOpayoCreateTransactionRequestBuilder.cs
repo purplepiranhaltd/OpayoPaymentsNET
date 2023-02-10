@@ -3,9 +3,8 @@ using OpayoPaymentsNet.Domain.Shared;
 
 namespace OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces
 {
-    public interface IOpayoTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestBuilder
     {
         internal OpayoCreateTransactionRequest Transaction { get; }
-        Result<OpayoCreateTransactionRequest> Build();
     }
 }
