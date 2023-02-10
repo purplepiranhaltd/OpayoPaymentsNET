@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpayoPaymentsNet.Tests", "OpayoPaymentsNet.Tests\OpayoPaymentsNet.Tests.csproj", "{7D5DBA33-23D9-497E-9B1F-6BEAFCC7D394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpayoPaymentsNet", "OpayoPaymentsNet\OpayoPaymentsNet.csproj", "{6451F2B3-8F9E-410D-A8AE-2BA6F08CE92A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpayoPaymentsNet", "OpayoPaymentsNet\OpayoPaymentsNet.csproj", "{6451F2B3-8F9E-410D-A8AE-2BA6F08CE92A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

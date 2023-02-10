@@ -1,18 +1,17 @@
 ﻿using OpayoPaymentsNet.Domain.Entities.CardIdentifiers;
-using OpayoPaymentsNet.Domain.Entities.Shared;
 using OpayoPaymentsNet.Domain.Shared;
 
 namespace OpayoPaymentsNet.Domain.Validators
 {
-    internal class OpayoCardIdentifierRequestValidator : IValidator<OpayoCardIdentifierRequest>
+    public class OpayoCardIdentifierRequestValidator : IValidator<OpayoCreateCardIdentifierRequest>
     {
-        public IEnumerable<Error> GetErrors(OpayoCardIdentifierRequest entity)
+        public IEnumerable<Error> GetErrors(OpayoCreateCardIdentifierRequest entity)
         {
             return (FindErrors(entity));
         }
 
 
-        private IEnumerable<Error> FindErrors(OpayoCardIdentifierRequest obj)
+        private IEnumerable<Error> FindErrors(OpayoCreateCardIdentifierRequest obj)
         {
 
             return FindErrorsForCardDetails(obj.CardDetails);

@@ -8,12 +8,11 @@ namespace OpayoPaymentsNet.Domain.Builders.CardIdentifiers
 {
     public class OpayoCardIdentifierRequestBuilder : IOpayoCardIdentifierRequestBuilder
     {
-        OpayoCardIdentifierRequest _request;
+        OpayoCreateCardIdentifierRequest _request;
 
         private OpayoCardIdentifierRequestBuilder()
         {
-            _request = new OpayoCardIdentifierRequest();
-            _request.CardDetails = new OpayoCardDetails();
+            _request = new OpayoCreateCardIdentifierRequest(new OpayoCardDetails());
         }
 
         public static IOpayoCardIdentifierRequestBuilder Create()
@@ -23,13 +22,13 @@ namespace OpayoPaymentsNet.Domain.Builders.CardIdentifiers
 
         //OpayoCardIdentifierRequest IOpayoCardIdentifierRequestBuilder.CardIdentifierRequest => _request;
 
-        public Result<OpayoCardIdentifierRequest> Build()
+        public Result<OpayoCreateCardIdentifierRequest> Build()
         {
             OpayoCardIdentifierRequestValidator validator = new();
             var errors = validator.GetErrors(_request);
 
             if (errors.Any())
-                return ValidationResult<OpayoCardIdentifierRequest>.WithErrors(errors.ToArray());
+                return ValidationResult<OpayoCreateCardIdentifierRequest>.WithErrors(errors.ToArray());
 
             return Result.Success(_request);
         }

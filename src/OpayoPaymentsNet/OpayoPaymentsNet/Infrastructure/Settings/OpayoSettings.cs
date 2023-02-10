@@ -27,7 +27,7 @@ namespace OpayoPaymentsNet.Infrastructure.Settings
             };
         }
 
-        public OpayoSettings(string vendorName, string integrationKey, string integrationPassword, OpayoEnvironment environment, int httpClientTimeoutSeconds = 20)
+        public OpayoSettings(string vendorName, string integrationKey, string integrationPassword, OpayoEnvironment environment)
         {
             VendorName = vendorName;
             IntegrationKey = integrationKey;

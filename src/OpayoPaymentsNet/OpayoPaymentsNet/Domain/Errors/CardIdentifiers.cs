@@ -1,20 +1,4 @@
-﻿
-/* Unmerged change from project 'OpayoPaymentsNet.Domain (net7.0)'
-Before:
-using System;
-After:
-using OpayoPaymentsNet.Domain.Shared;
-using System;
-*/
-using
-/* Unmerged change from project 'OpayoPaymentsNet.Domain (net7.0)'
-Before:
-using System.Threading.Tasks;
-using OpayoPaymentsNet.Domain.Shared;
-After:
-using System.Threading.Tasks;
-*/
-OpayoPaymentsNet.Domain.Shared;
+﻿using OpayoPaymentsNet.Domain.Shared;
 
 namespace OpayoPaymentsNet.Domain.Errors
 {

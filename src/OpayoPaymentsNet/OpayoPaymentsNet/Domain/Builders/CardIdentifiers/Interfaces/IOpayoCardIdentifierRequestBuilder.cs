@@ -10,7 +10,7 @@ namespace OpayoPaymentsNet.Domain.Builders.CardIdentifiers.Interfaces
         IOpayoCardIdentifierRequestBuilder WithCardholderName(string cardholderName);
         IOpayoCardIdentifierRequestBuilder WithExpiryDate(string expiryDate);
         IOpayoCardIdentifierRequestBuilder WithSecurityCode(string securityCode);
-        Result<OpayoCardIdentifierRequest> Build();
+        Result<OpayoCreateCardIdentifierRequest> Build();
     }
 
 }
