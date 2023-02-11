@@ -2,10 +2,10 @@
 
 namespace OpayoPaymentsNet.Domain.Entities.Instructions
 {
-    public class OpayoInstructionRequest
+    public class OpayoInstructionResponse
     {
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public OpayoInstructionType InstructionType { get; set; }
-        public int? Amount { get; set; }
+        public DateTime Date { get; set; }
     }
 }

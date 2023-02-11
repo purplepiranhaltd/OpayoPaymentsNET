@@ -33,7 +33,7 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest
             return new OpayoCreateTransactionRequestBuilder();
         }
 
-        OpayoCreateTransactionRequest IBuilder<OpayoCreateTransactionRequest>.Object => _request;
+        OpayoCreateTransactionRequest IBuilder<OpayoCreateTransactionRequest>.Request => _request;
 
         public Result<OpayoCreateTransactionRequest> Build()
         {

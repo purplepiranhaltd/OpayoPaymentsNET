@@ -21,7 +21,7 @@ namespace OpayoPaymentsNet.Domain.Builders.CardIdentifiers
             _request = new OpayoCreateCardIdentifierRequest(new OpayoCardDetails());
         }
 
-        OpayoCreateCardIdentifierRequest IBuilder<OpayoCreateCardIdentifierRequest>.Object => _request;
+        OpayoCreateCardIdentifierRequest IBuilder<OpayoCreateCardIdentifierRequest>.Request => _request;
 
         public static INewBuilder<OpayoCreateCardIdentifierRequest> Create()
         {

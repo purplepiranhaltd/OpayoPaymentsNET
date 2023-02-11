@@ -9,6 +9,6 @@ namespace OpayoPaymentsNet.Domain.Builders
 {
     public interface IBuilder<T> where T : class
     {
-        internal T Object { get; }
+        internal T Request { get; }
     }
 }

@@ -14,109 +14,109 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
     {
         public static IOpayoCreateTransactionRequestWithVendorTxCodeBuilder WithRequiredVendorTxCode(this INewBuilder<OpayoCreateTransactionRequest> builder, string vendorTxCode)
         {
-            builder.Object.VendorTxCode = vendorTxCode;
+            builder.Request.VendorTxCode = vendorTxCode;
             return (IOpayoCreateTransactionRequestWithVendorTxCodeBuilder)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithDescriptionBuilder WithRequiredDescription(this IOpayoCreateTransactionRequestWithVendorTxCodeBuilder builder, string description)
         {
-            builder.Object.Description = description;
+            builder.Request.Description = description;
             return (IOpayoCreateTransactionRequestWithDescriptionBuilder)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithAmountBuilder WithRequiredAmount(this IOpayoCreateTransactionRequestWithDescriptionBuilder builder, int amount)
         {
-            builder.Object.Amount = amount;
+            builder.Request.Amount = amount;
             return (IOpayoCreateTransactionRequestWithAmountBuilder)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IPaymentTransaction> AsPaymentTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Payment;
+            builder.Request.TransactionType = TransactionType.Payment;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IPaymentTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IDeferredTransaction> AsDeferredTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Deferred;
+            builder.Request.TransactionType = TransactionType.Deferred;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IDeferredTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthenticateTransaction> AsAuthenticateTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Authenticate;
+            builder.Request.TransactionType = TransactionType.Authenticate;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthenticateTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRepeatTransaction> AsRepeatTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Repeat;
+            builder.Request.TransactionType = TransactionType.Repeat;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRepeatTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRefundTransaction> AsRefundTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Refund;
+            builder.Request.TransactionType = TransactionType.Refund;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRefundTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthoriseTransaction> AsAuthoriseTransaction(this IOpayoCreateTransactionRequestWithAmountBuilder builder)
         {
-            builder.Object.TransactionType = TransactionType.Authorise;
+            builder.Request.TransactionType = TransactionType.Authorise;
             return (IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthoriseTransaction>)builder;
         }
 
         public static IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<T> WithRequiredReferenceTransactionId<T>(this IOpayoCreateTransactionRequestWithTransactionTypeBuilder<T> builder, string referenceTransactionId)
             where T : IAuthoriseRefundTransaction
         {
-            builder.Object.ReferenceTransactionId = referenceTransactionId;
+            builder.Request.ReferenceTransactionId = referenceTransactionId;
             return (IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<T>)builder;
         }
 
         public static IOpayoCreateTransactionRequestRepeatTransactionWithReferenceTransactionIdBuilder WithRequiredReferenceTransactionId(this IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRepeatTransaction> builder, string referenceTransactionId)
         {
-            builder.Object.ReferenceTransactionId = referenceTransactionId;
+            builder.Request.ReferenceTransactionId = referenceTransactionId;
             return (IOpayoCreateTransactionRequestRepeatTransactionWithReferenceTransactionIdBuilder)builder;
         }
 
         public static IOpayoCreateTransactionRequestRepeatTransactionWithCurrencyBuilder WithRequiredCurrency(this IOpayoCreateTransactionRequestRepeatTransactionWithReferenceTransactionIdBuilder builder, string currency)
         {
-            builder.Object.Currency = currency;
+            builder.Request.Currency = currency;
             return (IOpayoCreateTransactionRequestRepeatTransactionWithCurrencyBuilder)builder;
         }
 
         public static IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T> WithRequiredCurrency<T>(this IOpayoCreateTransactionRequestWithTransactionTypeBuilder<T> builder, string currency)
             where T : IPaymentDeferredAuthenticateTransaction
         {
-            builder.Object.Currency = currency;
+            builder.Request.Currency = currency;
             return (IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T>)builder;
         }
 
         public static IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<T> WithRequiredPaymentMethod<T>(this IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T> builder, OpayoPaymentMethod paymentMethod)
             where T : IPaymentDeferredAuthenticateTransaction
         {
-            builder.Object.PaymentMethod = paymentMethod;
+            builder.Request.PaymentMethod = paymentMethod;
             return (IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<T>)builder;
         }
 
         public static IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<T> WithRequiredCustomerFirstName<T>(this IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<T> builder, string customerFirstName)
             where T : IPaymentDeferredAuthenticateTransaction
         {
-            builder.Object.CustomerFirstName = customerFirstName;
+            builder.Request.CustomerFirstName = customerFirstName;
             return (IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<T>)builder;
         }
 
         public static IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<T> WithRequiredCustomerLastName<T>(this IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<T> builder, string customerLastName)
             where T : IPaymentDeferredAuthenticateTransaction
         {
-            builder.Object.CustomerLastName = customerLastName;
+            builder.Request.CustomerLastName = customerLastName;
             return (IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<T>)builder;
         }
 
         public static IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<T> WithRequiredBillingAddress<T>(this IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<T> builder, OpayoBillingAddress billingAddress)
             where T : IPaymentDeferredAuthenticateTransaction
         {
-            builder.Object.BillingAddress = billingAddress;
+            builder.Request.BillingAddress = billingAddress;
             return (IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<T>)builder;
         }
     }

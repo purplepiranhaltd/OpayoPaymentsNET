@@ -4,7 +4,7 @@
     {
         public static IBuildableBuilderWithTransactionType<IAuthoriseTransaction> WithOptionalCv2(this IBuildableBuilderWithTransactionType<IAuthoriseTransaction> builder, string cv2)
         {
-            builder.Object.Cv2 = cv2;
+            builder.Request.Cv2 = cv2;
             return builder;
         }
     }
