@@ -27,10 +27,10 @@ namespace OpayoPaymentsNet.Infrastructure.Services
             return await _opayoRestApiClientService.SendAsync(opayoRequest);
         }
 
-        ////public async Task<OpayoResponse<OpayoCreateIdentifierResponse>> RetrieveTransaction(string transactionId)
-        ////{
-        ////    var opayoRequest = new OpayoRequest(_settings.Value, $"{CARD_IDENTIFIERS_ENDPOINT}/{transactionId}", HttpMethod.Get);
-        ////    return await _opayoRestApiClientService.SendAsync(opayoRequest);
-        ////}
+        public async Task<OpayoResponse<OpayoRetrieveTransactionResponse>> RetrieveTransaction(string transactionId)
+        {
+            var opayoRequest = new OpayoRequest<OpayoCreateTransactionResponse>(_settings.Value, $"{TRANSACTIONS_ENDPOINT}/{transactionId}", HttpMethod.Get);
+            return await _opayoRestApiClientService.SendAsync(opayoRequest);
+        }
     }
 }

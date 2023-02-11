@@ -47,7 +47,7 @@ namespace OpayoPaymentsNet.Infrastructure.Models
         /// <param name="httpMethod">The method of the HTTP request</param>
         /// <param name="payload">The payload being sent</param>
         /// <param name="merchantSessionKey">The merchant session key (if required for authorization - CardIdentifiers endpoint only)</param>
-        public OpayoRequest(OpayoSettings settings, string endpoint, HttpMethod httpMethod, T? payload, string? merchantSessionKey = null)
+        public OpayoRequest(OpayoSettings settings, string endpoint, HttpMethod httpMethod, T? payload = null, string? merchantSessionKey = null)
         {
             Settings = settings;
             Endpoint = endpoint;
@@ -55,7 +55,11 @@ namespace OpayoPaymentsNet.Infrastructure.Models
             Payload = payload;
 
             // convert payload to json
-            PayloadInJson = JsonSerializer.Serialize(payload, OpayoSettings.JsonSerializerOptions);
+            if (payload is not null)
+            {
+                PayloadInJson = JsonSerializer.Serialize(payload, OpayoSettings.JsonSerializerOptions);
+            }
+            
             MerchantSessionKey = merchantSessionKey;
         }
 

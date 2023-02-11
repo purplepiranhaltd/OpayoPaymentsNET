@@ -299,5 +299,50 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             Assert.True(refundResponse.IsSuccess);
             Assert.True(refundResponse.Response?.Status is Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Ok);
         }
+
+        [Test]
+        public async Task RetrieveTransactionAsync_SuccessfullyRetrieved()
+        {
+            var msk = await Helpers.GetMerchantSessionKey();
+
+            if (msk is null)
+                Assert.Inconclusive("Unable to get Merchant Session Key. There should be another integration test failing that will give more detail.");
+
+            var cardIdentifier = await Helpers.CardIdentifiers.GetCardIdentifier_SUCCESSFUL(msk);
+
+            if (cardIdentifier is null)
+                Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
+
+            var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var paymentRequest = paymentRequestBuilder
+                .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+                .WithRequiredDescription("Integration Test Transaction")
+                .WithRequiredAmount(100)
+                .AsPaymentTransaction()
+                .WithRequiredCurrency("GBP")
+                .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+                .WithRequiredCustomerFirstName("Tommy")
+                .WithRequiredCustomerLastName("Tester")
+                .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
+                .Build();
+
+            if (paymentRequest.IsFailure)
+                Assert.Inconclusive("Unable to build request. There should be a unit test failing that will give more detail.");
+
+            var service = new OpayoTransactionService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.Get));
+            var paymentResponse = await service.CreateTransaction(paymentRequest.Value);
+
+            if (paymentResponse is null || paymentResponse.IsSuccess is false)
+                Assert.Inconclusive("Unable to create payment transaction. There should be another integration test failing that will give more detail.");
+
+            if (paymentResponse.Response?.Status is not Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Ok)
+                Assert.Inconclusive("Invalid response. There should be a unit test failing that will give more detail.");
+
+            var retrieveTransactionResponse = await service.RetrieveTransaction(paymentResponse.Response.TransactionId);
+
+            Assert.NotNull(retrieveTransactionResponse);
+            Assert.True(retrieveTransactionResponse.IsSuccess);
+            Assert.True(retrieveTransactionResponse.Response?.Status is Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Ok);
+        }
     }
 }
