@@ -13,7 +13,7 @@ namespace OpayoPaymentsNet.Tests.UnitTests
         [Test]
         public void CreateCardIdentifierRequest_WithValidCardDetails()
         {
-            var builder = OpayoCardIdentifierRequestBuilder.Create();
+            var builder = OpayoCreateCardIdentifierRequestBuilder.Create();
             var request = builder
                 .WithCardholderName("SUCCESSFUL")
                 .WithCardNumber("4929000000006")

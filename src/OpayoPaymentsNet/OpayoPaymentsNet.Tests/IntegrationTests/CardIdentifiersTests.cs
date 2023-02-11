@@ -16,7 +16,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
                 Assert.Inconclusive("Unable to get Merchant Session Key. There should be another integration test failing that will give more detail.");
 
             IOpayoCardIdentifierService service = new OpayoCardIdentifierService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.Get));
-            var builder = OpayoCardIdentifierRequestBuilder.Create();
+            var builder = OpayoCreateCardIdentifierRequestBuilder.Create();
             var request = builder
                 .WithCardholderName("SUCCESSFUL")
                 .WithCardNumber("4929000000006")

@@ -5,26 +5,27 @@ using OpayoPaymentsNet.Domain.Validators;
 
 namespace OpayoPaymentsNet.Domain.Builders.CardIdentifiers
 {
-    public class OpayoCardIdentifierRequestBuilder : 
-        IOpayoCardIdentifierRequestBuilder,
-        IOpayoCardIdentifierRequestBuilderWithCardholderName,
-        IOpayoCardIdentifierRequestBuilderWithCardNumber,
-        IOpayoCardIdentifierRequestBuilderWithExpiryDate,
-        IOpayoCardIdentifierRequestBuilderWithSecurityCode,
-        IBuildableOpayoCardIdentifierRequestBuilder
+    public class OpayoCreateCardIdentifierRequestBuilder : 
+        IOpayoCreateCardIdentifierRequestBuilderWithCardholderName,
+        IOpayoCreateCardIdentifierRequestBuilderWithCardNumber,
+        IOpayoCreateCardIdentifierRequestBuilderWithExpiryDate,
+        IOpayoCreateCardIdentifierRequestBuilderWithSecurityCode,
+        IBuilder<OpayoCreateCardIdentifierRequest>,
+        IBuildableBuilder<OpayoCreateCardIdentifierRequest>,
+        INewBuilder<OpayoCreateCardIdentifierRequest>
     {
         OpayoCreateCardIdentifierRequest _request;
 
-        private OpayoCardIdentifierRequestBuilder()
+        private OpayoCreateCardIdentifierRequestBuilder()
         {
             _request = new OpayoCreateCardIdentifierRequest(new OpayoCardDetails());
         }
 
-        OpayoCreateCardIdentifierRequest IOpayoCardIdentifierRequestBuilder.CardIdentifierRequest => _request;
+        OpayoCreateCardIdentifierRequest IBuilder<OpayoCreateCardIdentifierRequest>.Object => _request;
 
-        public static IOpayoCardIdentifierRequestBuilder Create()
+        public static INewBuilder<OpayoCreateCardIdentifierRequest> Create()
         {
-            return new OpayoCardIdentifierRequestBuilder();
+            return new OpayoCreateCardIdentifierRequestBuilder();
         }
 
         //OpayoCardIdentifierRequest IOpayoCardIdentifierRequestBuilder.CardIdentifierRequest => _request;

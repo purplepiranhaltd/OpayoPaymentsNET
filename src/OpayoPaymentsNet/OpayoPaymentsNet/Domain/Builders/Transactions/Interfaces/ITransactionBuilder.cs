@@ -3,110 +3,110 @@ using OpayoPaymentsNet.Domain.Shared;
 
 namespace OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces
 {
-    public interface ITransactionBuilder : IOpayoCreateTransactionRequestBuilder
+    ////public interface ITransactionBuilder : IOpayoCreateTransactionRequestBuilder
+    ////{
+    ////}
+
+    public interface IOpayoCreateTransactionRequestWithVendorTxCodeBuilder : IBuilder<OpayoCreateTransactionRequest>
     {
     }
 
-    public interface ITransactionWithVendorTxCodeBuilder : IOpayoCreateTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestWithDescriptionBuilder : IBuilder<OpayoCreateTransactionRequest>
     {
     }
 
-    public interface ITransactionWithDescriptionBuilder : IOpayoCreateTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestWithAmountBuilder : IBuilder<OpayoCreateTransactionRequest>
     {
     }
 
-    public interface ITransactionWithAmountBuilder : IOpayoCreateTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestWithTransactionTypeBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : ITransactionType
     {
     }
 
-    public interface ITransactionWithTransactionTypeBuilder<T> : IOpayoCreateTransactionRequestBuilder where T : ITransactionType
+    public interface IOpayoCreateTransactionRequestWithTransactionTypeBuilder :
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthenticateTransaction>,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRepeatTransaction>,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IAuthoriseTransaction>,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder<IRefundTransaction>
     {
     }
 
-    public interface ITransactionWithTransactionTypeBuilder :
-        ITransactionWithTransactionTypeBuilder<IPaymentTransaction>,
-        ITransactionWithTransactionTypeBuilder<IDeferredTransaction>,
-        ITransactionWithTransactionTypeBuilder<IAuthenticateTransaction>,
-        ITransactionWithTransactionTypeBuilder<IRepeatTransaction>,
-        ITransactionWithTransactionTypeBuilder<IAuthoriseTransaction>,
-        ITransactionWithTransactionTypeBuilder<IRefundTransaction>
+    public interface IOpayoCreateTransactionRequestRepeatTransactionWithReferenceTransactionIdBuilder : IBuilder<OpayoCreateTransactionRequest>
     {
     }
 
-    public interface IRepeatTransactionTransactionWithReferenceTransactionIdBuilder : IOpayoCreateTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<T> : IBuildableBuilderWithTransactionType<T>, IBuilder<OpayoCreateTransactionRequest> where T : IAuthoriseRefundTransaction
     {
     }
 
-    public interface IAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<T> : IBuildableTransactionBuilder<T>,  IOpayoCreateTransactionRequestBuilder where T : IAuthoriseRefundTransaction
+    public interface IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder :
+        IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<IAuthoriseTransaction>,
+        IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<IRefundTransaction>
     {
     }
 
-    public interface IAuthoriseRefundTransactionWithReferenceTransactionIdBuilder :
-        IAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<IAuthoriseTransaction>,
-        IAuthoriseRefundTransactionWithReferenceTransactionIdBuilder<IRefundTransaction>
-    {
-    }
-
-    public interface IRepeatTransactionWithCurrencyBuilder : IBuildableTransactionBuilder<IRepeatTransaction>, IOpayoCreateTransactionRequestBuilder
+    public interface IOpayoCreateTransactionRequestRepeatTransactionWithCurrencyBuilder : IBuildableBuilderWithTransactionType<IRepeatTransaction>, IBuilder<OpayoCreateTransactionRequest>
     { 
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T> : IOpayoCreateTransactionRequestBuilder where T : IPaymentDeferredAuthenticateTransaction
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction
     {
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder :
-        IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IPaymentTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IDeferredTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IAuthenticateTransaction>
-    {
-
-    }
-
-    public interface IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<T> : IOpayoCreateTransactionRequestBuilder where T : IPaymentDeferredAuthenticateTransaction
-    {
-    }
-
-    public interface IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder :
-        IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IPaymentTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IDeferredTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IAuthenticateTransaction>
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder :
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<IAuthenticateTransaction>
     {
 
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<T> : IOpayoCreateTransactionRequestBuilder where T : IPaymentDeferredAuthenticateTransaction
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction
     {
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder :
-        IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IPaymentTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IDeferredTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IAuthenticateTransaction>
-    {
-
-    }
-
-    public interface IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<T> : IOpayoCreateTransactionRequestBuilder where T : IPaymentDeferredAuthenticateTransaction
-    {
-    }
-
-    public interface IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder :
-        IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IPaymentTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IDeferredTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IAuthenticateTransaction>
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder :
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder<IAuthenticateTransaction>
     {
 
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<T> : IBuildableTransactionBuilder, IOpayoCreateTransactionRequestBuilder where T : IPaymentDeferredAuthenticateTransaction
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction
     {
     }
 
-    public interface IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder :
-        IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IPaymentTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IDeferredTransaction>,
-        IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IAuthenticateTransaction>
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder :
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder<IAuthenticateTransaction>
+    {
+
+    }
+
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction
+    {
+    }
+
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder :
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder<IAuthenticateTransaction>
+    {
+
+    }
+
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<T> : IBuildableBuilderWithTransactionType<T>, IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction
+    {
+    }
+
+    public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder :
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IPaymentTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IDeferredTransaction>,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder<IAuthenticateTransaction>
     {
 
     }

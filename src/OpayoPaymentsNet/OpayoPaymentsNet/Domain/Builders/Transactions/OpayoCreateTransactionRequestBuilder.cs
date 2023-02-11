@@ -6,21 +6,21 @@ using OpayoPaymentsNet.Domain.Validators;
 namespace OpayoPaymentsNet.Domain.Builders.Transactions
 {
     public class OpayoCreateTransactionRequestBuilder :
-        IOpayoCreateTransactionRequestBuilder,
-        ITransactionBuilder,
-        ITransactionWithVendorTxCodeBuilder,
-        ITransactionWithDescriptionBuilder,
-        ITransactionWithAmountBuilder,
-        ITransactionWithTransactionTypeBuilder,
-        IRepeatTransactionTransactionWithReferenceTransactionIdBuilder,
-        IAuthoriseRefundTransactionWithReferenceTransactionIdBuilder,
-        IRepeatTransactionWithCurrencyBuilder,
-        IPaymentDeferredAuthenticateTransactionWithCurrencyBuilder,
-        IPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder,
-        IPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder,
-        IPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder,
-        IPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder,
-        IBuildableTransactionBuilder
+        IOpayoCreateTransactionRequestWithVendorTxCodeBuilder,
+        IOpayoCreateTransactionRequestWithDescriptionBuilder,
+        IOpayoCreateTransactionRequestWithAmountBuilder,
+        IOpayoCreateTransactionRequestWithTransactionTypeBuilder,
+        IOpayoCreateTransactionRequestRepeatTransactionWithReferenceTransactionIdBuilder,
+        IOpayoCreateTransactionRequestAuthoriseRefundTransactionWithReferenceTransactionIdBuilder,
+        IOpayoCreateTransactionRequestRepeatTransactionWithCurrencyBuilder,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithPaymentMethodBuilder,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerFirstNameBuilder,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCustomerLastNameBuilder,
+        IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithBillingAddressBuilder,
+        IBuilder<OpayoCreateTransactionRequest>,
+        IBuildableBuilder<OpayoCreateTransactionRequest>,
+        INewBuilder<OpayoCreateTransactionRequest>
     {
         private OpayoCreateTransactionRequest _request;
 
@@ -29,12 +29,12 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions
             _request = new OpayoCreateTransactionRequest();
         }
 
-        public static ITransactionBuilder Create()
+        public static INewBuilder<OpayoCreateTransactionRequest> Create()
         {
             return new OpayoCreateTransactionRequestBuilder();
         }
 
-        OpayoCreateTransactionRequest IOpayoCreateTransactionRequestBuilder.Transaction => _request;
+        OpayoCreateTransactionRequest IBuilder<OpayoCreateTransactionRequest>.Object => _request;
 
         public Result<OpayoCreateTransactionRequest> Build()
         {

@@ -70,7 +70,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
                 try
                 {
                     IOpayoCardIdentifierService service = new OpayoCardIdentifierService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.Get));
-                    var builder = OpayoCardIdentifierRequestBuilder.Create();
+                    var builder = OpayoCreateCardIdentifierRequestBuilder.Create();
                     var request = builder
                         .WithCardholderName(nameOnCard)
                         .WithCardNumber(cardNumber)
