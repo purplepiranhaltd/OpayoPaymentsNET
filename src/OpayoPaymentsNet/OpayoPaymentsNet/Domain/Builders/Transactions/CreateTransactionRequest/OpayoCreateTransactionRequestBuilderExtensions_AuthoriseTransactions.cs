@@ -1,6 +1,4 @@
-﻿using OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces;
-
-namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
+﻿namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
 {
     public static partial class OpayoCreateTransactionRequestBuilderExtensions
     {

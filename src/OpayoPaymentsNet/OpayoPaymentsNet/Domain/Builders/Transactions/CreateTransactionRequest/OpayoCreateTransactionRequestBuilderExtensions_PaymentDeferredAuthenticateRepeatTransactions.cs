@@ -1,5 +1,4 @@
-﻿using OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces;
-using OpayoPaymentsNet.Domain.Entities.Shared;
+﻿using OpayoPaymentsNet.Domain.Entities.Shared;
 
 namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
 {

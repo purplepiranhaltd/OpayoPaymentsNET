@@ -1,7 +1,7 @@
 ﻿using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
 using OpayoPaymentsNet.Domain.Shared;
 
-namespace OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces
+namespace OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest
 {
     ////public interface ITransactionBuilder : IOpayoCreateTransactionRequestBuilder
     ////{
@@ -48,7 +48,7 @@ namespace OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces
     }
 
     public interface IOpayoCreateTransactionRequestRepeatTransactionWithCurrencyBuilder : IBuildableBuilderWithTransactionType<IRepeatTransaction>, IBuilder<OpayoCreateTransactionRequest>
-    { 
+    {
     }
 
     public interface IOpayoCreateTransactionRequestPaymentDeferredAuthenticateTransactionWithCurrencyBuilder<T> : IBuilder<OpayoCreateTransactionRequest> where T : IPaymentDeferredAuthenticateTransaction

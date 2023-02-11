@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Options;
-using OpayoPaymentsNet.Domain.Builders.Transactions;
+using OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest;
 using OpayoPaymentsNet.Domain.Builders.Transactions.Extensions;
 using OpayoPaymentsNet.Domain.Entities.Enums;
 using OpayoPaymentsNet.Domain.Entities.Shared;

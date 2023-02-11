@@ -1,9 +1,8 @@
-﻿using OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces;
-using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
+﻿using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
 using OpayoPaymentsNet.Domain.Shared;
 using OpayoPaymentsNet.Domain.Validators;
 
-namespace OpayoPaymentsNet.Domain.Builders.Transactions
+namespace OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest
 {
     public class OpayoCreateTransactionRequestBuilder :
         IOpayoCreateTransactionRequestWithVendorTxCodeBuilder,

@@ -1,4 +1,4 @@
-﻿using OpayoPaymentsNet.Domain.Builders.Transactions.Interfaces;
+﻿using OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest;
 using OpayoPaymentsNet.Domain.Entities.Enums;
 using OpayoPaymentsNet.Domain.Entities.Shared;
 using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
