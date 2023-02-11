@@ -1,12 +1,10 @@
 using Microsoft.Extensions.Options;
 using OpayoPaymentsNet.Domain.Builders.Instructions;
-using OpayoPaymentsNet.Domain.Builders.Transactions.CreateTransactionRequest;
+using OpayoPaymentsNet.Domain.Builders.Transactions;
 using OpayoPaymentsNet.Domain.Builders.Transactions.Extensions;
-using OpayoPaymentsNet.Domain.Entities.Enums;
 using OpayoPaymentsNet.Domain.Entities.Shared;
 using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
 using OpayoPaymentsNet.Infrastructure.Services;
-using OpayoPaymentsNet.Interfaces;
 
 namespace OpayoPaymentsNet.Tests.IntegrationTests
 {
@@ -30,7 +28,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var builder = OpayoCreateTransactionRequestBuilder.Create();
+            var builder = OpayoTransactionRequestBuilder.Create();
 
             var request = builder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
@@ -68,7 +66,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var builder = OpayoCreateTransactionRequestBuilder.Create();
+            var builder = OpayoTransactionRequestBuilder.Create();
             var request = builder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -105,7 +103,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var builder = OpayoCreateTransactionRequestBuilder.Create();
+            var builder = OpayoTransactionRequestBuilder.Create();
             var request = builder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -142,7 +140,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var paymentRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -167,7 +165,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (paymentResponse.Response?.Status is not Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Ok)
                 Assert.Inconclusive("Invalid response. There should be a unit test failing that will give more detail.");
 
-            var repeatRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var repeatRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var repeatRequest = repeatRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -200,7 +198,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var authenticateRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var authenticateRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var authenticateRequest = authenticateRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -225,7 +223,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (authenticateResponse.Response?.Status is not Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Registered)
                 Assert.Inconclusive("Invalid response. There should be a unit test failing that will give more detail.");
 
-            var authoriseRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var authoriseRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var authoriseRequest = authoriseRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -257,7 +255,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var paymentRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -282,7 +280,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (paymentResponse.Response?.Status is not Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Ok)
                 Assert.Inconclusive("Invalid response. There should be a unit test failing that will give more detail.");
 
-            var refundRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var refundRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var refundRequest = refundRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -314,7 +312,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var paymentRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -359,7 +357,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var paymentRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var paymentRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var paymentRequest = paymentRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -408,7 +406,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var deferredRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var deferredRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var deferredRequest = deferredRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -457,7 +455,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var deferredRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var deferredRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var deferredRequest = deferredRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
@@ -506,7 +504,7 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             if (cardIdentifier is null)
                 Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
 
-            var authenticateRequestBuilder = OpayoCreateTransactionRequestBuilder.Create();
+            var authenticateRequestBuilder = OpayoTransactionRequestBuilder.Create();
             var authenticateRequest = authenticateRequestBuilder
                 .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
                 .WithRequiredDescription("Integration Test Transaction")
