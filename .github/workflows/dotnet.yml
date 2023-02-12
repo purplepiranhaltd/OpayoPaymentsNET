@@ -34,6 +34,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Create Nuget Package
-      run: dotnet nuget pack --configuration Release OpayoPaymentsNet/OpayoPaymentsNet.csproj
+      run: dotnet pack --configuration Release OpayoPaymentsNet/OpayoPaymentsNet.csproj
     - name: Push Nuget Package
       run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg
