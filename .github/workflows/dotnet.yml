@@ -19,11 +19,8 @@ env:
   NuGetDirectory: ${{ github.workspace}}/nuget
   
 jobs:
-  build_test:
+  build_test_pack:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet: [ '6.0.x', '7.0.x' ]
     defaults:
       run:
         working-directory: ./src
@@ -32,28 +29,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ matrix.dotnet }}
+        dotnet-version: '6.0.x'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
-    - name: Upload Artificats
-      uses: actions/upload-artifact@v3
-      with: 
-        name: build
-        path: OpayoPaymentsNet/**
-        
-  pack:
-#    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
-    needs: [ build_test ]
-    steps:
-    - uses: actions/download-artifact@v3
-      with:
-        name: build
-        path: OpayoPaymentsNet
     - name: Create Nuget Package
       run: dotnet pack OpayoPaymentsNet/OpayoPaymentsNet.csproj --configuration Release --no-build #--output ${{ env.NuGetDirectory }}
     - uses: actions/upload-artifact@v3
@@ -62,11 +44,11 @@ jobs:
         if-no-files-found: error
         retention-days: 7
         path: ${{ env.NuGetDirectory }}/*.nupkg
-  
+        
   push:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
-    needs: [ pack ]
+    needs: [ build_test_pack ]
     steps:
     - uses: actions/download-artifact@v3
       with:
