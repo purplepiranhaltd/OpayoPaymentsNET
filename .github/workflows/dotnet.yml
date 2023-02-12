@@ -25,6 +25,8 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -34,6 +36,5 @@ jobs:
     - name: Create Nuget Package
       run: dotnet pack --configuration Release OpayoPaymentsNet/OpayoPaymentsNet.csproj
     - name: Push Nuget Package
-      run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://nuget.pkg.github.com/purplepiranhaltd/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_OPAYOPAYMENTSNET}}
+      run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg
+
