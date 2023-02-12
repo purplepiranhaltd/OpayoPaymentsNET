@@ -58,7 +58,7 @@ jobs:
         dotnet-version: '7.0.x'
         source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.PAUL_PAT}}
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Push Nuget Package
       run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg
 
