@@ -26,6 +26,8 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
         source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.NUGET_OPAYOPAYMENTSNET}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -36,5 +38,3 @@ jobs:
       run: dotnet pack --configuration Release OpayoPaymentsNet/OpayoPaymentsNet.csproj
     - name: Push Nuget Package
       run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_OPAYOPAYMENTSNET}}
