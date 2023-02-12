@@ -4,14 +4,22 @@
 name: .NET
 
 on:
+  workflow_dispatch:            # Allow running the workflow manually from the GitHub UI
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]        # Run the workflow when pushing to the main branch
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]        # Run the workflow for all pull requests
+  release:
+    types:
+    - published                 # Run the workflow when a new GitHub release is published
 
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/nuget
+  
 jobs:
-  build:
-
+  build_test_pack:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -22,9 +30,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
-        source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        #source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
+      #env:
+        #NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -32,7 +40,29 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Create Nuget Package
-      run: dotnet pack --configuration Release OpayoPaymentsNet/OpayoPaymentsNet.csproj
+      run: dotnet pack --no-build --configuration Release --output ${{ env.NuGetDirectory }} OpayoPaymentsNet/OpayoPaymentsNet.csproj
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+        
+  push:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    needs: [ build_test_pack ]
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: nuget
+        path: ${{ env.NuGetDirectory }}
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+        source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Push Nuget Package
       run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg
 
