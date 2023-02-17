@@ -4,6 +4,7 @@
 name: .NET
 
 on:
+  workflow_dispatch:                   # Allow running the workflow manually from the GitHub UI
   release:
     types: [published]                 # Run the workflow when a new GitHub release is published
     tags:
@@ -15,7 +16,7 @@ env:
   NuGetDirectory: ${{ github.workspace}}/nuget
   
 jobs:
-  build_test_pack:
+  build_and_release:
     runs-on: ubuntu-latest
     defaults:
       run:
