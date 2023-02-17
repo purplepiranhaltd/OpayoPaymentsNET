@@ -60,5 +60,5 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{ github.token }}
     - name: Push Nuget Package
-      run: dotnet nuget push OpayoPaymentsNet/bin/Release/*.nupkg
+      run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg
 
