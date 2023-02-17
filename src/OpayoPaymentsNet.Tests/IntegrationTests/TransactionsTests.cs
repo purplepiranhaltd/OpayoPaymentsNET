@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Options;
 using OpayoPaymentsNet.Domain.Builders.Instructions;
 using OpayoPaymentsNet.Domain.Builders.Transactions;
-using OpayoPaymentsNet.Domain.Builders.Transactions.Extensions;
 using OpayoPaymentsNet.Domain.Entities.Shared;
 using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
 using OpayoPaymentsNet.Infrastructure.Services;

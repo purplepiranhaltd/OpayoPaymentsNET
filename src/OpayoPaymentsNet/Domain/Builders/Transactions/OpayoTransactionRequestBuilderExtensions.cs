@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpayoPaymentsNet.Domain.Builders.Transactions.Extensions
+namespace OpayoPaymentsNet.Domain.Builders.Transactions
 {
     public static partial class OpayoCreateTransactionRequestBuilderExtensions
     {
