@@ -44,6 +44,6 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build --verbosity normal
     - name: Create Nuget Package
-      run: dotnet pack OpayoPaymentsNet/OpayoPaymentsNet.csproj --configuration Release /p:Version=${VERSION} --no-build --output ${{ env.NuGetDirectory }}
+      run: dotnet pack OpayoPaymentsNet/OpayoPaymentsNet.csproj --configuration Release /p:Version=${VERSION} --no-build --output ${{ env.NuGetDirectory }} --include-symbols -p:SymbolPackageFormat=snupkg
     - name: Push Nuget Package
       run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg
