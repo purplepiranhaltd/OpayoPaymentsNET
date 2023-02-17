@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
@@ -7,7 +7,7 @@
 		<Authors>Paul @ Purple Piranha</Authors>
 		<Company>Purple Piranha Limited</Company>
 		<Description>
-			A client library for processing payments with Opayo.
+			OpayoPaymentsNET is a modern open-source .NET library for processing payments using the Opayo REST API.
 		</Description>
 		<RepositoryUrl>https://github.com/purplepiranhaltd/OpayoPaymentsNET</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
