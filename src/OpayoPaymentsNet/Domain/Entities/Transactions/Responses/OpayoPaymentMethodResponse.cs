@@ -7,6 +7,6 @@ namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
         /// <summary>
         /// The card object represents the credit or debit card details for this transaction.
         /// </summary>
-        public OpayoCard? Card { get; set; }
+        public OpayoCardResponse? Card { get; set; }
     }
 }
