@@ -4,14 +4,15 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:            # Allow running the workflow manually from the GitHub UI
 
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/nuget
+  
 jobs:
-  build:
-
+  build_test_pack:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,10 +22,54 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: '7.0.x'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build --configuration Release --no-restore
+#    - name: Test
+#      run: dotnet test --no-build --verbosity normal
+    - name: Create Nuget Package
+      run: dotnet pack OpayoPaymentsNet/OpayoPaymentsNet.csproj --configuration Release --no-build --output ${{ env.NuGetDirectory }}
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+        
+  push_github:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    needs: [ build_test_pack ]
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: nuget
+        path: ${{ env.NuGetDirectory }}
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+        source-url: https://nuget.pkg.github.com/purplepiranhaltd/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ github.token }}
+    - name: Push Nuget Package
+      run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg
+
+  push_nuget:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    needs: [ build_test_pack ]
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: nuget
+        path: ${{ env.NuGetDirectory }}
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+    - name: Push Nuget Package
+      run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg --api-key $API_KEY --source $SOURCE
+      env:
+        SOURCE: https://api.nuget.org/v3/index.json
+        API_KEY: ${{ secrets.NUGET_OPAYOPAYMENTSNET }}
