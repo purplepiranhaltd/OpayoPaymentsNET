@@ -44,13 +44,13 @@ namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
         /// <summary>
         /// A fully qualified URL that points to the 3D Secure authentication system at the card holder's issuing bank
         /// </summary>
-        public string AcsUrl { get; set; }
+        public string? AcsUrl { get; set; }
 
         /// <summary>
         /// A Base64 encoded message to be passed to the Issuing Bank as part of the 3D Secure Authentication.
         /// This replaces the PAReq. When forwarding the cReq to the acsUrl, pass it in a field called creq (note the lower case cr).
         /// This avoids issues at the ACS which expects the fieldname to be all lowercase.
         /// </summary>
-        public string CReq { get; set; }
+        public string? CReq { get; set; }
     }
 }
