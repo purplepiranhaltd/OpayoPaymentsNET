@@ -16,6 +16,7 @@ namespace OpayoPaymentsNet.Infrastructure.Services
         private readonly IOptions<OpayoSettings> _settings;
         private const string TRANSACTIONS_ENDPOINT = "/transactions";
         private const string INSTRUCTIONS_ENDPOINT = "/transactions/{0}/instructions";
+        private const string THREE_D_SECURE_ENDPOINT = "/transactions/{0}/3d-secure-challenge";
 
         public OpayoTransactionService(IOpayoRestApiClientService opayoRestApiClientService, IOptions<OpayoSettings> settings)
         {
@@ -38,6 +39,12 @@ namespace OpayoPaymentsNet.Infrastructure.Services
         public async Task<OpayoResponse<OpayoInstructionResponse>> CreateInstruction(string transactionId, OpayoInstructionRequest request)
         {
             var opayoRequest = new OpayoRequest<OpayoInstructionRequest>(_settings.Value, string.Format(INSTRUCTIONS_ENDPOINT, transactionId), HttpMethod.Post, request);
+            return await _opayoRestApiClientService.SendAsync(opayoRequest);
+        }
+
+        public async Task<OpayoResponse<OpayoCreateTransactionResponse>> Create3DSecureChallengeResponse(string transactionId, Opayo3DSecureChallengeResponseRequest request)
+        {
+            var opayoRequest = new OpayoRequest<Opayo3DSecureChallengeResponseRequest>(_settings.Value, string.Format(THREE_D_SECURE_ENDPOINT, transactionId), HttpMethod.Post, request);
             return await _opayoRestApiClientService.SendAsync(opayoRequest);
         }
     }

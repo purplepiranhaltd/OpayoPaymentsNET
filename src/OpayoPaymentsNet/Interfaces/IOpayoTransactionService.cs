@@ -12,5 +12,6 @@ namespace OpayoPaymentsNet.Interfaces
         Task<OpayoResponse<OpayoCreateTransactionResponse>> CreateTransaction(OpayoCreateTransactionRequest request);
         Task<OpayoResponse<OpayoRetrieveTransactionResponse>> RetrieveTransaction(string transactionId);
         Task<OpayoResponse<OpayoInstructionResponse>> CreateInstruction(string transactionId, OpayoInstructionRequest request);
+        Task<OpayoResponse<OpayoCreateTransactionResponse>> Create3DSecureChallengeResponse(string transactionId, Opayo3DSecureChallengeResponseRequest request);
     }
 }
