@@ -1,4 +1,6 @@
-﻿namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
+﻿using System.Text.Json.Serialization;
+
+namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
 {
     public enum OpayoTransactionStatus
     {
@@ -29,6 +31,15 @@
         /// <summary>
         /// Transaction has been registered (Authenticate transaction)
         /// </summary>
-        Registered //TODO: Not in opayo documentation
+        Registered,
+        /// <summary>
+        /// Redirect (PayPal)
+        /// </summary>
+        Redirect,
+        /// <summary>
+        /// Transaction requires redirection for 3D Secure Challenge
+        /// </summary>
+        [JsonPropertyName("3DAuth")]
+        ThreeDAuth
     }
 }
