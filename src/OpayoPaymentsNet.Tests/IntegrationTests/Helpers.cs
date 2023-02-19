@@ -2,6 +2,7 @@
 using OpayoPaymentsNet.Domain.Builders.CardIdentifiers;
 using OpayoPaymentsNet.Domain.Entities.CardIdentifiers;
 using OpayoPaymentsNet.Infrastructure.Services;
+using OpayoPaymentsNet.Infrastructure.Settings;
 using OpayoPaymentsNet.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,14 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
     /// </summary>
     public static class Helpers
     {
-        public static async Task<string?> GetMerchantSessionKey()
+        public static async Task<string?> GetMerchantSessionKey(OpayoSettings? settings = null)
         {
+            if (settings is null)
+                settings = SandboxSettings.Get;
+
             try
             {
-                IOpayoMerchantSessionKeyService service = new OpayoMerchantSessionKeyService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.Get));
+                IOpayoMerchantSessionKeyService service = new OpayoMerchantSessionKeyService(new OpayoRestApiClientService(new HttpClient()), Options.Create(settings));
                 var response = await service.CreateMerchantSessionKeyAsync();
                 return response?.Response?.MerchantSessionKey;
             }
@@ -35,41 +39,44 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
 
         public static class CardIdentifiers
         {
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_SUCCESSFUL(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_SUCCESSFUL(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "SUCCESSFUL", "4929000000006", "1229", "123");
             }
 
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_NOTAUTH(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_NOTAUTH(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "NOTAUTH", "4929000000006", "1229", "123");
             }
 
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_CHALLENGE(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_CHALLENGE(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "CHALLENGE", "4929000000006", "1229", "123");
             }
 
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_PROOFATTEMPT(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_PROOFATTEMPT(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "PROOFATTEMPT", "4929000000006", "1229", "123");
             }
 
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_TECHDIFFICULTIES(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_TECHDIFFICULTIES(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "TECHDIFFICULTIES", "4929000000006", "1229", "123");
             }
 
-            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_ERROR(string merchantSessionKey)
+            public static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier_ERROR(string merchantSessionKey, OpayoSettings? settings = null)
             {
                 return await GetCardIdentifier(merchantSessionKey, "ERROR", "4929000000006", "1229", "123");
             }
 
-            private static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier(string merchantSessionKey, string nameOnCard, string cardNumber, string expiryMMYY, string securityCode)
+            private static async Task<OpayoCreateIdentifierResponse?> GetCardIdentifier(string merchantSessionKey, string nameOnCard, string cardNumber, string expiryMMYY, string securityCode, OpayoSettings? settings = null)
             {
+                if (settings is null)
+                    settings = SandboxSettings.Get;
+
                 try
                 {
-                    IOpayoCardIdentifierService service = new OpayoCardIdentifierService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.Get));
+                    IOpayoCardIdentifierService service = new OpayoCardIdentifierService(new OpayoRestApiClientService(new HttpClient()), Options.Create(settings));
                     var builder = OpayoCreateCardIdentifierRequestBuilder.Create();
                     var request = builder
                         .WithCardholderName(nameOnCard)

@@ -33,6 +33,10 @@ namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
         /// </summary>
         Registered,
         /// <summary>
+        /// Transaction has been authenticated (Authenticate transaction)
+        /// </summary>
+        Authenticated,
+        /// <summary>
         /// Redirect (PayPal)
         /// </summary>
         Redirect,

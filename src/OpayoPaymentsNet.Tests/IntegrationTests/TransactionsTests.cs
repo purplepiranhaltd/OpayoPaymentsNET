@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using OpayoPaymentsNet.Domain.Builders.Instructions;
 using OpayoPaymentsNet.Domain.Builders.Transactions;
+using OpayoPaymentsNet.Domain.Builders.Transactions.Extensions;
 using OpayoPaymentsNet.Domain.Entities.Shared;
 using OpayoPaymentsNet.Domain.Entities.Transactions.Requests;
 using OpayoPaymentsNet.Infrastructure.Services;
@@ -125,6 +126,43 @@ namespace OpayoPaymentsNet.Tests.IntegrationTests
             Assert.True(response.IsSuccess);
             Assert.True(response.Response?.Status is Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Registered);
         }
+
+        ////[Test]
+        ////public async Task CreateAuthenticateTransactionAsync_SuccessfullyCreated_ExtraChecksProfile()
+        ////{
+        ////    var msk = await Helpers.GetMerchantSessionKey(SandboxSettings.GetExtraChecks);
+
+        ////    if (msk is null)
+        ////        Assert.Inconclusive("Unable to get Merchant Session Key. There should be another integration test failing that will give more detail.");
+
+        ////    var cardIdentifier = await Helpers.CardIdentifiers.GetCardIdentifier_SUCCESSFUL(msk, SandboxSettings.GetExtraChecks);
+
+        ////    if (cardIdentifier is null)
+        ////        Assert.Inconclusive("Unable to get Card Identifier. There should be another integration test failing that will give more detail.");
+
+        ////    var builder = OpayoTransactionRequestBuilder.Create();
+        ////    var request = builder
+        ////        .WithRequiredVendorTxCode(Guid.NewGuid().ToString())
+        ////        .WithRequiredDescription("Integration Test Transaction")
+        ////        .WithRequiredAmount(100)
+        ////        .AsAuthenticateTransaction()
+        ////        .WithRequiredCurrency("GBP")
+        ////        .WithRequiredPaymentMethod(new OpayoPaymentMethod() { Card = new OpayoCard() { CardIdentifier = cardIdentifier.CardIdentifier, MerchantSessionKey = msk, Reusable = false, Save = false } })
+        ////        .WithRequiredCustomerFirstName("Tommy")
+        ////        .WithRequiredCustomerLastName("Tester")
+        ////        .WithRequiredBillingAddress(new OpayoBillingAddress() { Address1 = "88", PostalCode = "412", City = "London", Country = "GB" })
+        ////        .Build();
+
+        ////    if (request.IsFailure)
+        ////        Assert.Inconclusive("Unable to build request. There should be a unit test failing that will give more detail.");
+
+        ////    var service = new OpayoTransactionService(new OpayoRestApiClientService(new HttpClient()), Options.Create(SandboxSettings.GetExtraChecks));
+        ////    var response = await service.CreateTransaction(request.Value);
+
+        ////    Assert.NotNull(response);
+        ////    Assert.True(response.IsSuccess);
+        ////    Assert.True(response.Response?.Status is Domain.Entities.Transactions.Responses.OpayoTransactionStatus.Registered);
+        ////}
 
         [Test]
         public async Task CreateRepeatTransactionAsync_SuccessfullyCreated()
