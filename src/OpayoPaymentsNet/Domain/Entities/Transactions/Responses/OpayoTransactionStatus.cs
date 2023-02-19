@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
 {
@@ -43,7 +44,7 @@ namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
         /// <summary>
         /// Transaction requires redirection for 3D Secure Challenge
         /// </summary>
-        [JsonPropertyName("3DAuth")]
+        [EnumMember(Value = "3DAuth")]
         ThreeDAuth
     }
 }
