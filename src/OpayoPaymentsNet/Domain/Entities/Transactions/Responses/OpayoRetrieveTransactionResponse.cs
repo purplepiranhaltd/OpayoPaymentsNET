@@ -19,7 +19,7 @@ namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
         /// <summary>
         /// The transaction status
         /// </summary>
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        ////[JsonConverter(typeof(JsonStringEnumConverter))]
         public OpayoTransactionStatus? Status { get; set; }
 
         /// <summary>
