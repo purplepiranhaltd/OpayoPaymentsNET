@@ -1,4 +1,5 @@
-﻿using OpayoPaymentsNet.Infrastructure.Settings;
+﻿using OpayoPaymentsNet.Infrastructure.Exceptions;
+using OpayoPaymentsNet.Infrastructure.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,14 @@ namespace OpayoPaymentsNet.Infrastructure.Models
 
             if (RawResponse is not null)
             {
-                Response = JsonSerializer.Deserialize<T>(RawResponse, OpayoSettings.JsonSerializerOptions);
+                try
+                {
+                    Response = JsonSerializer.Deserialize<T>(RawResponse, OpayoSettings.JsonSerializerOptions);
+                }
+                catch (JsonException e)
+                {
+                    throw new OpayoResponseDeserializationException(RawResponse, e);
+                }
             }
         }
 
