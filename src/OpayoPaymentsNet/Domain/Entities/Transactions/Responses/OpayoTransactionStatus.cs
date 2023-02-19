@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpayoPaymentsNet.Domain.Entities.Transactions.Responses
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public enum OpayoTransactionStatus
     {
         /// <summary>
